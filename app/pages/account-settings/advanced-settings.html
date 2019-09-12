@@ -1,0 +1,54 @@
+<config-navbar heading="{{'settings.advanced' | translate}}" back="&lt;&nbsp;{{'global.back' | translate}}"></config-navbar>
+
+<ion-content class="has-header" scrollbar-y="false">
+	<div class="list">
+		<div class="item item-divider"></div>
+
+		<a href="#/page/account-settings/inflation" ng-if="vm.isActivated()">
+			<div class="item" style="display:flex;justify-content:space-between">
+				<div style="padding-right:20px;flex-shrink:0">
+					{{'settings.inflation' | translate}}
+				</div>
+				<div class="text-gray" style="display:flex;justify-content:flex-end;text-overflow:ellipsis;overflow:hidden">
+					<div style="flex-shrink:1;text-overflow:ellipsis;overflow:hidden;min-width:0">
+						{{vm.inflationDest}}
+					</div>
+					<div style="flex-shrink:0">&raquo;</div>
+				</div>
+			</div>
+		</a>
+
+		<a href="#/page/account-settings/export">
+			<div class="item">
+				<span>
+					{{'settings.export' | translate}}
+				</span>
+				<div class="pull-right text-gray">
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+
+		<a href="#/page/account-settings/close" ng-if="vm.isActivated()">
+			<div class="item">
+				<span>
+					Close Account
+				</span>
+				<div class="pull-right text-gray">
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+
+		<a href="#/page/account-settings/delete" ng-if="vm.advanced">
+			<div class="item">
+				<span>
+					{{'settings.delete' | translate}}
+				</span>
+				<div class="pull-right text-gray">
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+	</div>
+</ion-content>

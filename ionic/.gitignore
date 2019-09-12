@@ -1,0 +1,8 @@
+/platforms/*
+/plugins
+/res
+/resources/*
+!/platforms/platforms.json
+!/resources/icon.png
+*.keystore
+*.apk

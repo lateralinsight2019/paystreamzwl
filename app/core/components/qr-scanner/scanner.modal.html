@@ -1,0 +1,14 @@
+<ion-modal-view ng-controller="scannerModalController">
+	<ion-header-bar align-title="center" class="tab-bar">
+		<button on-tap="cancel()" class="button button-clear button-white">
+			{{'modal.close' | translate}}
+		</button>
+		<h1 class="title ellipsis">
+			{{'modal.scanner.heading' | translate}}
+		</h1>
+	</ion-header-bar>
+	<ion-content class="modal-content text-center fix-modals-touch" ng-init="init()" scrollbar-y="false">
+		<canvas id="qr-canvas" width="480" height="360"></canvas>
+		<video id="qrcode-scanner-video" width="480" height="360"></video>
+	</ion-content>
+</ion-modal-view>

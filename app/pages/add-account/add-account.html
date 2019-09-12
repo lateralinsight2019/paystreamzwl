@@ -1,0 +1,64 @@
+<config-navbar heading="{{'page.add-account' | translate}}" back="{{vm.done | translate}}"></config-navbar>
+
+<ion-content class="has-header" scrollbar-y="false">
+	<div class="list">
+		<div class="item item-divider"></div>
+
+		<a href="#/page/add-account/create-personal">
+			<div class="item">
+				<span>
+					{{'page.add-account.create-personal' | translate}}
+				</span>
+				<div class="pull-right text-gray">
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+
+		<a href="#/page/add-account/create-shared" ng-if="vm.isInitialized">
+			<div class="item">
+				<span>
+					{{'page.add-account.create-shared' | translate}}
+				</span>
+				<div class="pull-right text-gray">
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+
+		<div class="item item-divider"></div>
+
+		<a href="#/page/add-account/import-account">
+			<div class="item">
+				<span>
+					{{'page.add-account.import-secret' | translate}}
+				</span>
+				<div class="pull-right text-gray">
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+
+		<a href="#/page/add-account/import-phrase">
+			<div class="item">
+				<span>
+					{{'page.add-account.import-phrase' | translate}}
+				</span>
+				<div class="pull-right text-gray">
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+
+		<a href on-tap="vm.importFromQR()" ng-show="vm.hasCamera()">
+			<div class="item bottom-border">
+				<span>
+					{{'page.add-account.import-qr' | translate}}
+				</span>
+				<div class="pull-right text-gray">
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+	</div>
+</ion-content>

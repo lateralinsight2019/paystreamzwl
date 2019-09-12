@@ -1,0 +1,48 @@
+<wallet-header></wallet-header>
+
+<div ng-switch="vm.isActivated()" style="height:100%">
+	<ion-content class="has-header" scrollbar-y="false" ng-switch-when="true">
+		<ion-refresher
+			pulling-text="{{'page.home.pull' | translate}}"
+			pulling-icon="icon-pull"
+			on-refresh="vm.doRefresh()">
+		</ion-refresher>
+		<div style="background-color:#00BCD4;color:#FFFFFF">
+			<div style="min-height:120px;font-size:18px;display:flex;flex-direction:column;justify-content:center">
+				<div>
+					<!-- <div style="text-align:center" ng-repeat="asset in vm.getAssets()">
+						{{ asset.balance | formatAmount }}
+						{{ asset.asset_code }}
+					</div> -->
+					<div style="text-align:center" ng-repeat="asset in vm.getAssets()">
+						{{ asset.balance | formatAmount }} ZWL
+					</div>
+				</div>
+			</div>
+			<account-info></account-info>
+		</div>
+
+		<div class="camera-icon" style="position:relative" ng-show="vm.hasCamera()">
+			<qr-scanner on-scan="vm.index.onQrCodeScanned(data)"></qr-scanner>
+		</div>
+
+		<account-requests></account-requests>
+		<account-activity account="vm.wallet.current" limit="100" filter="payments"></account-activity>
+	</ion-content>
+
+	<div style="height:100%" ng-switch-when="false">
+		<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%">
+			<div>{{'page.home.empty' | translate:vm.translationData}}</div>
+		</div>
+
+		<div style="height:40px;width:100%;position:fixed;bottom:40px">
+			<div class="camera-icon" style="position:relative" ng-show="vm.hasCamera()">
+				<qr-scanner on-scan="vm.index.onQrCodeScanned(data)"></qr-scanner>
+			</div>
+			<account-info></account-info>
+		</div>
+		<account-requests></account-requests>
+	</div>
+</div>
+
+<wallet-footer></wallet-footer>

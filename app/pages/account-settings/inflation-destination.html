@@ -1,0 +1,47 @@
+<config-navbar heading="{{'settings.inflation' | translate}}" back="&lt;&nbsp;{{'global.back' | translate}}"></config-navbar>
+
+<ion-content class="has-header" scrollbar-y="false">
+	<div class="list">
+		<div class="item item-divider">
+		</div>
+		<form name="inflationForm">
+			<label class="item item-input item-inset item-stacked-label" style="padding-right:32px;">
+				<span class="input-label">
+					{{'settings.inflation.label' | translate}}
+				</span>
+				<input type="text" name="destination" ng-model="vm.data.destination" ng-model-options="{debounce: 200}" placeholder="{{'settings.inflation.placeholder' | translate}}" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" valid-address="vm.onValidAddress(res)">
+			</label>
+		</form>
+
+		<div ng-hide="vm.data.destInfo">
+			<div class="item item-divider"></div>
+
+			<select-account
+				network="vm.account.network"
+				destination="vm.data.destination">
+			</select-account>
+
+			<select-contact
+				network="vm.account.network"
+				destination="vm.data.destination">
+			</select-contact>
+
+			<a href on-tap="vm.selectPool()" ng-if="vm.isPublic()">
+				<div class="item">
+					<span>
+						{{'Select an Inflation pool' | translate}}
+					</span>
+					<div class="pull-right text-gray">
+						<span>&raquo;</span>
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+
+	<div class="button-group" style="position:absolute;bottom:0">
+		<button class="button button-block button-positive" on-tap="vm.setInflation()" ng-disabled="inflationForm.$invalid">
+			{{'global.save' | translate}}
+		</button>
+	</div>
+</ion-content>

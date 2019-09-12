@@ -1,0 +1,35 @@
+<div class="sidebar">
+
+	<ion-content scrollbar-y="false">
+		<div style="display:flex;flex-direction:column;align-items:center;padding:20px 0">
+			<h1 style="color:#ECECEC">PayStream</h1>
+		</div>
+
+		<div class="list">
+			<div class="item">
+				<span>{{vm.text.accounts}}</span>
+				<a href="#/page/add-account" class="pull-right" menu-toggle>
+					<span class="badge">+</span>
+				</a>
+			</div>
+			<a ng-href="#/page/home/{{account.id}}" ng-repeat="account in vm.accounts" menu-toggle>
+				<div class="item" ng-class="{selected: vm.isSelected(account)}">
+					<i class="icon" ng-class="vm.getType(account)"></i>
+					{{account.alias}}
+					<span class="badge badge-solid pull-right" ng-show="vm.getBadgeCount(account) !== 0">
+						{{ vm.getBadgeCount(account)}}
+					</span>
+				</div>
+			</a>
+		</div>
+
+		<div class="list">
+			<div class="item">
+				<a class="button button-block button-outline button-stable"
+				   href="#/page/global-settings/" menu-toggle>
+					{{vm.text.settings}}
+				</a>
+			</div>
+		</div>
+	</ion-content>
+</div>

@@ -1,0 +1,61 @@
+<config-navbar heading="{{'settings.global.heading' | translate}}" back="{{'global.done' | translate}}"></config-navbar>
+
+<ion-content class="has-header" scrollbar-y="false">
+	<div class="list">
+
+		<div class="item item-divider"></div>
+
+		<a href="#/page/global-settings/language">
+			<div class="item">
+				<span>
+					{{'settings.language' | translate}}
+				</span>
+				<div class="pull-right text-gray">
+					{{vm.language}}
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+
+		<a href="#/page/global-settings/contacts">
+			<div class="item bottom-border">
+				<span>
+					{{'settings.contacts' | translate}}
+				</span>
+				<div class="pull-right text-gray">
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+
+		<div class="item item-divider"></div>
+
+		<div class="item item-toggle">
+			<span>
+				{{'Advanced Mode' | translate}}
+			</span>
+			<div class="pull-right text-gray">
+				<label class="toggle">
+					<input type="checkbox" ng-model="vm.advanced" ng-change="vm.toggleAdvanced()">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+		</div>
+
+		<div class="item item-divider"></div>
+
+		<a href="#/page/global-settings/about">
+			<div class="item bottom-border">
+				<span>
+					About
+				</span>
+				<div class="pull-right text-gray">
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+
+	</div>
+</ion-content>

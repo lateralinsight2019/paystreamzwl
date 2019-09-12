@@ -1,0 +1,60 @@
+{
+  "name": "PayStream",
+  "description": "A mobile/desktop wallet for the Stellar payments network",
+  "version": "1.7.0",
+  "author": "Future Tense <johan.sten@gmail.com>",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run clean && npm run copy-app && electron .",
+    "copy-app": "cp -R ../dist app",
+    "clean": "rm -rf app dist",
+    "build-mac": "build --mac --x64",
+    "build-win": "build --win --x64",
+    "build-linux": "build --linux --x64"
+  },
+  "build": {
+    "appId": "io.futuretense.stargazer.wallet",
+    "compression": "maximum",
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "mac": {
+      "icon": "build/icons/icon.icns",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.finance"
+    },
+    "squirrelWindows": {
+      "iconUrl": "https://github.com/johansten/stargazer/blob/master/electron/build/icons/icon.ico?raw=true"
+    },
+    "win": {
+      "icon": "build/icons/icon.ico",
+      "target": [
+        "nsis",
+        "squirrel",
+        "zip"
+      ]
+    }
+  },
+  "devDependencies": {
+    "ajv": "^6.5.2",
+    "electron": "^2.0.5",
+    "electron-builder": "^20.24.4",
+    "electron-builder-squirrel-windows": "^20.24.2",
+    "electron-packager": "^14.0.6"
+  },
+  "dependencies": {}
+}

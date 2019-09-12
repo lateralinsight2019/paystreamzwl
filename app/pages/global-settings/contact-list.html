@@ -1,0 +1,24 @@
+<config-navbar heading="{{'settings.contacts' | translate}}" back="&lt;&nbsp;{{'global.back' | translate}}"></config-navbar>
+
+<ion-content class="has-header" scrollbar-y="false">
+	<div class="list" ng-style="{'min-height':vm.minHeight}">
+		<div class="item item-divider">
+		</div>
+		<a ng-href="#/page/global-settings/contact/{{name}}" ng-repeat="name in vm.names">
+			<div class="item">
+				<span>
+					{{name}}
+				</span>
+				<div class="pull-right text-gray">
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+	</div>
+
+	<div class="button-group">
+		<button class="button button-block button-positive" on-tap="vm.addContact()">
+			{{'settings.contacts.add' | translate}}
+		</button>
+	</div>
+</ion-content>

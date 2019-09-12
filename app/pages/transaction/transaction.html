@@ -1,0 +1,136 @@
+<config-navbar heading="{{'page.transaction.heading' | translate}}" back="{{'global.done' | translate}}"></config-navbar>
+<ion-content class="has-header" scrollbar-y="false">
+
+	<div class="list">
+		<div class="item activity-header" ng-if="vm.type==='send'">
+			<jazzicon seed="{{vm.seed}}"></jazzicon>
+			<div class="text-gray" style="margin-bottom:8px">
+				{{'page.transaction.sent' | translate}}
+			</div>
+			<!--<div style="font-size:24px;margin-bottom:8px">
+				{{ vm.amount | formatAmount }} {{ vm.code}}
+			</div> -->
+			<div style="font-size:24px;margin-bottom:8px">
+				{{ vm.amount | formatAmount }} ZWL
+			</div>
+		</div>
+
+		<div class="item activity-header" ng-if="vm.type==='recv'">
+			<jazzicon seed="{{vm.seed}}"></jazzicon>
+			<div class="text-gray" style="margin-bottom:8px">
+				{{'page.transaction.received' | translate }}
+			</div>
+			<!--<div style="font-size:24px;margin-bottom:8px">
+				{{ vm.amount | formatAmount }} {{ vm.code}}
+			</div> -->
+			<div style="font-size:24px;margin-bottom:8px">
+				{{ vm.amount | formatAmount }} ZWL
+			</div>
+		</div>
+
+		<div class="item activity-header" ng-if="vm.type==='trade'">
+			<jazzicon seed="{{vm.seed}}"></jazzicon>
+			<div class="text-gray" style="margin-bottom:8px">
+				{{'page.transaction.traded' | translate }}
+			</div>
+			<div style="font-size:24px;margin-bottom:8px">
+				+{{ vm.bought_amount | formatAmount }} {{ vm.bought_code}}
+			</div>
+			<div style="font-size:24px;margin-bottom:8px">
+				-{{ vm.sold_amount | formatAmount }} {{ vm.sold_code}}
+			</div>
+		</div>
+
+		<div class="item item-divider">
+			{{'page.transaction.details' | translate }}
+		</div>
+
+		<a class="item"
+			 style="padding-top: 6px;padding-bottom: 6px;"
+			 ng-if="vm.type!=='trade'"
+			 ng-click="vm.index.copyToClipboard(vm.counterparty)">
+			<div class="item-input" style="padding-left:0;justify-content: space-between;">
+				<span class="input-label" style="padding-right:20px;flex-shrink:0;width:auto">
+					{{::vm.counterpartyLabel | translate}}
+				</span>
+				<span class="text-gray" style="flex-shrink:1;justify-content:flex-end;text-overflow:ellipsis;overflow:hidden">
+					<account-name id="{{::vm.counterparty}}" network="{{::vm.network}}" tx="vm.effect"></account-name>
+				</span>
+			</div>
+		</a>
+
+		<div class="item"
+			 style="padding-top: 6px;padding-bottom: 6px;">
+			<label class="item-input" style="padding-left:0;justify-content: space-between;">
+				<span class="input-label">
+					{{'page.transaction.date' | translate}}
+				</span>
+				<span class="text-gray">
+					{{::vm.effect.date | formatDate}}
+				</span>
+			</label>
+		</div>
+
+		<a class="item"
+			 style="padding-top: 6px;padding-bottom: 6px;"
+			 ng-click="vm.index.copyToClipboard(vm.effect.hash)">
+
+			<div class="item-input" style="padding-left:0;justify-content:space-between">
+				<div class="input-label" style="padding-right:20px;flex-shrink:0">
+					{{'Transaction ID' | translate}}
+				</div>
+				<div class="text-gray" style="display:flex;justify-content:flex-end;text-overflow:ellipsis;overflow:hidden">
+					<div style="flex-shrink:1;text-overflow:ellipsis;overflow:hidden;min-width:0">
+						{{::vm.effect.hash}}
+					</div>
+				</div>
+			</div>
+		</a>
+
+		<div class="item" style="padding-top: 6px;padding-bottom: 6px;" ng-if="!vm.isContact && vm.effect.memo">
+			<label class="item-input" style="padding-left:0;justify-content: space-between;">
+				<span class="input-label">
+					{{'page.transaction.memo' | translate}}
+				</span>
+				<span class="text-gray">
+					{{::vm.effect.memo}}
+				</span>
+			</label>
+		</div>
+
+		<div class="item" style="padding-top: 6px;padding-bottom: 6px;" ng-show="vm.effect.comment">
+			<label class="item-input" style="padding-left:0;justify-content: space-between;">
+				<span class="input-label">
+					{{'page.transaction.comment' | translate}}
+				</span>
+				<span class="text-gray">
+					{{vm.effect.comment}}
+				</span>
+			</label>
+		</div>
+	</div>
+
+	<div class="item item-divider"></div>
+
+	<a href on-tap="vm.addContact()" ng-if="!vm.isWallet && !vm.isContact && vm.type!=='trade'">
+		<div class="item">
+			<span>
+				{{'page.transaction.contact.add' | translate}}
+			</span>
+			<div class="pull-right text-gray">
+				<span>&raquo;</span>
+			</div>
+		</div>
+	</a>
+
+	<a href on-tap="vm.editComment()">
+		<div class="item">
+			<span>
+				{{vm.buttonText() | translate}}
+			</span>
+			<div class="pull-right text-gray">
+				<span>&raquo;</span>
+			</div>
+		</div>
+	</a>
+</ion-content>

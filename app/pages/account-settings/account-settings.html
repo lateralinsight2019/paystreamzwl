@@ -1,0 +1,81 @@
+<config-navbar heading="{{'settings.account.heading' |translate}}" back="{{'global.done' | translate}}"></config-navbar>
+
+<ion-content class="has-header" scrollbar-y="false">
+	<div class="list">
+		<div class="item item-divider"></div>
+
+		<a href="#/page/account-settings/alias">
+			<div class="item">
+				<span>
+					{{'settings.name' | translate}}
+				</span>
+				<div class="pull-right text-gray">
+					{{vm.account.alias}}
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+
+		<a href="#/page/account-settings/trustlines" ng-if="vm.isActivated()">
+			<div class="item">
+				<span>
+					{{'settings.trustlines' | translate}}
+				</span>
+				<div class="pull-right text-gray">
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+
+		<a href="#/page/account-settings/advanced">
+			<div class="item bottom-border">
+				<span>
+					{{'settings.advanced' | translate}}
+				</span>
+				<div class="pull-right text-gray">
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+
+		<div class="item item-divider">
+			{{'settings.security' | translate}}
+		</div>
+
+		<div class="item item-toggle">
+			<span>
+				{{'settings.password' | translate}}
+			</span>
+			<div class="pull-right text-gray">
+				<label class="toggle">
+					<input type="checkbox" ng-model="vm.flag.hasPassword" ng-change="vm.togglePassword()">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+		</div>
+
+		<a href="#/page/account-settings/recovery-phrase" ng-if="vm.account.mnemonic">
+			<div class="item bottom-border">
+				<span>
+					{{'Backup Recovery Phrase' | translate}}
+				</span>
+				<div class="pull-right text-gray">
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+
+		<a href="#/page/account-settings/signers" ng-if="vm.isActivated()">
+			<div class="item bottom-border">
+				<span>
+					{{'settings.signers' | translate}}
+				</span>
+				<div class="pull-right text-gray">
+					<span>&raquo;</span>
+				</div>
+			</div>
+		</a>
+	</div>
+</ion-content>

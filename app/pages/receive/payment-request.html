@@ -1,0 +1,54 @@
+<ion-modal-view ng-controller="PaymentRequestCtrl" style="height:390px">
+	<ion-header-bar align-title="center" class="tab-bar">
+		<button on-tap="cancel()" class="button button-clear button-white">
+			{{'modal.close' | translate}}
+		</button>
+		<h1 class="title ellipsis">
+			{{'modal.request.heading' | translate}}
+		</h1>
+	</ion-header-bar>
+
+	<ion-content ng-hide="showResult" class="modal-content fix-modals-touch" scrollbar-y="false">
+		<form name="qrForm">
+			<div class="item item-divider"></div>
+			<div class="item" style="padding-bottom:8px;padding-top:6px">
+				<span class="input-label" style="padding-bottom:0;padding-top:0">
+					{{'modal.request.amount.label' | translate}}
+				</span>
+				<div class="row" style="padding:0">
+					<div class="col" style="padding:0">
+						<label class="item-input item-stacked-label" style="padding-left:0;border-width:0;border:#CCC;border-style:solid;padding-top:0;padding-bottom:0;border-width:0 0 1px 0;margin-right:8px">
+							<input type="number" ng-model="model.amount" ng-change="onAmount()" ng-model-options="{debounce: 200}" placeholder="{{'modal.request.amount.placeholder' | translate}}" min="{{send.minAmount}}" style="height:28px" required>
+						</label>
+					</div>
+
+					<div class="col" style="padding:0;">
+						<label class="item-input item-select item-stacked-label" style="padding-left:0;border:#CCC;border-style:solid;padding-top:0;padding-bottom:0;border-width:0 0 1px 0;margin-left:8px">
+							<select ng-model="model.asset" ng-init="model.asset=balances[0]" ng-change="onAsset()" ng-options="getAssetDescription(asset) for asset in balances" style="height:28px;padding-top:3px;padding-bottom:2px">
+							</select>
+						</label>
+					</div>
+				</div>
+			</div>
+			<memo-selector type="model.memo_type" memo="model.memo"></memo-selector>
+		</form>
+		<div style="padding-left:16px;padding-right:16px">
+			<button class="button button-block button-positive" on-tap="generateQrCode()" ng-disabled="qrForm.$invalid">
+				{{'modal.request.button' | translate}}
+			</button>
+		</div>
+	</ion-content>
+
+	<ion-content ng-show="showResult" class="modal-content fix-modals-touch" scrollbar-y="false">
+		<div class="list">
+			<div class="item item-divider">
+				{{'global.qr-code' | translate}}
+			</div>
+			<div class="item" style="display:flex; flex-direction: column; align-items: center;">
+				<qrcode text="text"></qrcode>
+			</div>
+			<div class="item item-divider"></div>
+		</div>
+	</ion-content>
+
+</ion-modal-view>
